@@ -19,5 +19,5 @@ public interface BookService {
 	
 	Page<Book> getAllContainsTitle(int pageNumber,int numberOfPage,String title);
 
-	
+	List<Book> getAllBooks();
 }

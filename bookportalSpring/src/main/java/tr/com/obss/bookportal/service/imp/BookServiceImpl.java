@@ -79,15 +79,11 @@ public class BookServiceImpl implements BookService{
 		
 	}
 
+	@Override
+	public List<Book> getAllBooks() {
+		// TODO Auto-generated method stub
+		return this.bookRepository.findAll();
+	}
 
-	
 
-
-
-
-	
-	
-	
-	
-	
 }

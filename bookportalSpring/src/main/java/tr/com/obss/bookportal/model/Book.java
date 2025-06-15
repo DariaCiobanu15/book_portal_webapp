@@ -42,4 +42,7 @@ public class Book {
 	@ManyToOne( cascade = CascadeType.MERGE)
     private Author author;
 
+	@NotNull
+	private Integer price;
+
 }

@@ -26,8 +26,9 @@ function HeaderUser() {
 
                               <HeaderItem title="Reading List" to="/reading-list" image="assets/image/reading-user.png" />
 
+                              <HeaderItem title="Buy books" to="/buy-books" image="assets/image/library-books-icon.png" />
 
-
+                              <HeaderItem title="Raport" to="/raport" image="assets/image/reading-user.png" />
 
                               <div className="col-3 col-md-12  header-item">
                                     <button className="btn mt-3" style={{ color: "white", fontSize: "12px" }} onClick={logOut}>

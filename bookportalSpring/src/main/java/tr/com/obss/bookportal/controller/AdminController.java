@@ -94,7 +94,6 @@ public class AdminController {
 		
 		//log.info("Loginng user name: "+ authentication.getName());
 		return new SuccessDataResponse<Page<Author>>(authorService.getAll(page, numberOfData),"Successfully listed author.");
-
 	}
 	
 	@DeleteMapping("/author/{authorId}")
@@ -156,14 +155,12 @@ public class AdminController {
 		
 		//log.info("Loginng user name: "+ authentication.getName());
 		return new SuccessDataResponse<Page<Author>>(authorService.getAllContainsName(page, numberOfData, name),"Successfully listed users.");
-
 	}
 	
 
 	@PostMapping("/book/update")
 	public Response updateBook(@RequestBody Book book) {
-		
-		
+
 		this.bookService.update(book);
 		
 		return new SuccessResponse("Successfully book updated");

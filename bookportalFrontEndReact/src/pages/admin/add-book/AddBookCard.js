@@ -10,10 +10,11 @@ function AddBookCard({ addBookFunction, authors}) {
                   numberOfPages: 0,
                   author: {
                         id: 0
-                  }
+                  },
+                  price: 0,
             });
 
-      var {title,numberOfPages,author} = bookDetails;
+      var {title, numberOfPages, author, price} = bookDetails;
 
       const handleEvent = (event) => {
             setBookDetails({
@@ -63,6 +64,8 @@ function AddBookCard({ addBookFunction, authors}) {
                                     })
                               }
                         </select>
+                        <span>Price</span>
+                        <input type="number" className="form-control" name="price" value={price} onChange={handleEvent}/>
                         <button className="btn btn-lg btn-danger mt-3" style={{ float: "right" }} onClick={addBook}>Add</button>
                   </div>
             </div>

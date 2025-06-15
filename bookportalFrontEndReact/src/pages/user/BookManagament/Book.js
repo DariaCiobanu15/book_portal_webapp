@@ -10,7 +10,7 @@ import { useState } from "react";
  * normal or update mode.
  */
 function Book(props) {
-      const { title, numberOfPages, id, author } = props.details;
+      const { title, numberOfPages, id, author, price } = props.details;
       const { addToReadingListFunction, addToFavouriteListFunction } = props;
 
       const [bookDetailsState, updateBookDetailsState] = useState({ title: title, numberOfPages: numberOfPages, author: author });
@@ -28,8 +28,7 @@ function Book(props) {
             /**
              * UpdateLogic
              */
-            addToFavouriteListFunction(id)
-           
+            addToFavouriteListFunction(id);
 
       }
 
@@ -53,6 +52,10 @@ function Book(props) {
 
                               <td >Page size</td>
                               <td>{numberOfPages}</td>
+                        </tr>
+                        <tr>
+                              <td>Price</td>
+                              <td>{price}</td>
                         </tr>
                   </tbody>
             </table>

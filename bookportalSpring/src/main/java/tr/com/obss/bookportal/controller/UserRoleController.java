@@ -16,14 +16,17 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.extern.slf4j.Slf4j;
+import tr.com.obss.bookportal.dto.ReportDto;
 import tr.com.obss.bookportal.dto.response.DataResponse;
 import tr.com.obss.bookportal.dto.response.Response;
 import tr.com.obss.bookportal.dto.response.SuccessDataResponse;
 import tr.com.obss.bookportal.dto.response.SuccessResponse;
 import tr.com.obss.bookportal.mapper.UserMapper;
 import tr.com.obss.bookportal.model.Book;
+import tr.com.obss.bookportal.model.Purchase;
 import tr.com.obss.bookportal.model.User;
 import tr.com.obss.bookportal.service.BookService;
+import tr.com.obss.bookportal.service.PurchaseService;
 import tr.com.obss.bookportal.service.UserService;
 
 @RequestMapping("/api/v1/user")
@@ -35,17 +38,19 @@ public class UserRoleController {
 	
 	private UserService userService;
 	private BookService bookService;
+	private PurchaseService purchaseService;
 
 	
 	private UserMapper userMapper;
 	
 	
 	@Autowired
-	public UserRoleController(UserService userService, UserMapper userMapper,BookService bookService) {
+	public UserRoleController(UserService userService, UserMapper userMapper,BookService bookService, PurchaseService purchaseService) {
 		super();
 		this.userService = userService;
 		this.userMapper = userMapper;
 		this.bookService = bookService;
+		this.purchaseService = purchaseService;
 	}
 	
 	
@@ -89,7 +94,6 @@ public class UserRoleController {
 		List<Book> favoriteList = this.userService.getFavouriteList(authentication.getName());
 		
 		return new SuccessDataResponse<List<Book>>(favoriteList,"Successfully listed favourite list.");
-
 	}
 	
 	@PostMapping("/user/favoriteList/{bookId}")
@@ -120,5 +124,19 @@ public class UserRoleController {
 
 	}
 
-	
+	@GetMapping("/book/getAll")
+	public DataResponse<List<Book>> getAll(){
+		return new SuccessDataResponse<List<Book>>(bookService.getAllBooks(),"Successfully listed books.");
+	}
+
+	@PostMapping("/book/addPurchase")
+	public Response addPurchase(@RequestBody Purchase purchase) {
+		this.purchaseService.add(purchase);
+		return new SuccessResponse("Successfully added purchase.");
+	}
+
+	@GetMapping("/author/report")
+	public List<ReportDto> getAuthorPurchaseReport() {
+		return purchaseService.getAuthorPurchaseReport();
+	}
 }

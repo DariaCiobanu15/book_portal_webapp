@@ -1,10 +1,6 @@
 package tr.com.obss.bookportal.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -12,6 +8,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.sql.Date;
 
 @Entity
 @Table(name="authors")
@@ -33,8 +31,9 @@ public class Author {
 	@Size(min = 3, message = "userName cannot be less than 3 characters ")
 	private String surName;
 	
-
-	private java.sql.Date birthDate;
+	@NotNull(message = "birthDate is not null.")
+	@Column(name = "birth_date")
+	private Date birthDate;
 	
 	
 }
